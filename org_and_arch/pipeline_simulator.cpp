@@ -32,7 +32,7 @@ int main() {
         //This inner loop tracks each sequence's position within the pipeline
         for (int inst = 0; inst < sequences; ++inst) {
             int stage = cycle - inst + 1;
-            //This only prints teh stage currently active in the cycle
+            //This only prints the stage currently active in the cycle
             if (stage > 0 && stage <= stages)
                 cout << "I" << inst + 1 << "." << stageNames[stage-1] << "  ";
                 else
