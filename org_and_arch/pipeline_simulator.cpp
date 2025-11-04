@@ -11,29 +11,32 @@ using namespace std;
 
 int main() {
     const int stages = 5;
-    const int instructions = 6;
+    const int sequences = 6;
 
     //Stage names were expanded for readability
 
     const string stageNames[stages] = {
-        "Fetch Instructions", // 
-        "Decode Instruction", 
-        "Execute Operations", 
-        "Memory Access", 
-        "Write-back result"
+        "Fetch Instructions", //IF
+        "Decode Instruction", //ID
+        "Execute Operations", //EX
+        "Memory Access",      //MEM
+        "Write-back result"   //WB
     };
 
     cout << "This is a simulation of a CPU instruction pipeline\n";
     cout << "------------------------------------------------\n\n";
 
-    for (int cycle = 0; cycle < stages + instructions - 1; ++cycle) {
+    //This outer loop represents the clock cycle of the CPU.
+    for (int cycle = 0; cycle < stages + sequences - 1; ++cycle) {
         cout << "Cycle " << setw(2) << cycle + 1 << " | ";
-        for (int inst = 0; inst < instructions; ++inst) {
+        //This inner loop tracks each sequence's position within the pipeline
+        for (int inst = 0; inst < sequences; ++inst) {
             int stage = cycle - inst + 1;
+            //This only prints teh stage currently active in the cycle
             if (stage > 0 && stage <= stages)
                 cout << "I" << inst + 1 << "." << stageNames[stage-1] << "  ";
                 else
-                    cout << "      ";
+                    cout << "      "; //This empty slot is for bubble or idle cycles
         }
         cout << "\n";
         this_thread::sleep_for(chrono::milliseconds(250)); //we purposely slowed this down so that it has readability
