@@ -43,7 +43,7 @@ int main () {
     ((1 - cacheHitRate) * memoryAccessTime);
 
 
-    cout << "== Memory Hierarchy Simulation ==n";
+    cout << "== Memory Hierarchy Simulation ==\n";
     cout << fixed << setprecision(1);
     cout << "Cache Hit Rate: " << cacheHitRate * 100 << "%\n";
     cout << "Cache Access Time: " << cacheAccessTime << " ns\n";
@@ -51,5 +51,11 @@ int main () {
     cout << "----------------------------------\n";
     cout << "Average Memory Access Time: " << avgAccessTime << " ns\n";
 
+    //What does this mean?
+    // - 90% of requests are served by the 5 ns cache.
+    // - 10% fall through to 100 ns main memory.
+    // -> Effective average ~ 14.5 ns, showing how hierarchy cuts latency.
+    // This corresponds directly to the principle illustrated in Fgiure 6.1.
+     
     return 0;
 }
